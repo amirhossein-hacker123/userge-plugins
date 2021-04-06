@@ -27,7 +27,6 @@ def getUser(userid):
     'examples': "**For Text:** `{tr}searchdb 12345678`"})
 async def searchdb(message: Message):
     replied = message.reply_to_message
-    delay = str(0.1)
 
     if replied:
         await message.edit(getUser(str(replied.forward_from.id if replied.forward_from else replied.from_user.id)))
