@@ -9,7 +9,7 @@ S_LOG = userge.getCLogger(__name__)
 def getUser(userid):
     data = requests.get('http://turk-hack1.tk/shkar/?UseriD='+userid).json()
 
-    if data['Search']['error']:
+    if 'error' in data['Search']:
          return '`No user found in database`'
     else:
          return '''
