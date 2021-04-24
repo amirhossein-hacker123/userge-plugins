@@ -17,6 +17,8 @@ async def searchdb(message: Message):
 	g1 = gg[0]
 	g2 = gg[1]
 	count = int(gg[2])
+	if gg[3] == '1':
+		g1 = int(gg[0])
 
 	await message.edit('Getting members list...')
 	ll = await client.get_chat_members(g1,limit=count)
