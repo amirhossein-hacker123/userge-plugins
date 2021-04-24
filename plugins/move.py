@@ -18,6 +18,6 @@ async def searchdb(message: Message):
     g2 = gg[1]
     count = int(gg[2])
 
-    for i in client.get_chat_members(g1,limit=count):
+    for i in await client.get_chat_members(g1,limit=count):
         
         client.add_chat_members(g2,i.user.id)
