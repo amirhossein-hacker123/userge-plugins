@@ -11,13 +11,19 @@ S_LOG = userge.getCLogger(__name__)
     'usage': "{tr}moveusers [group1] [group2] [count]",
     'examples': "**For Text:** `{tr}moveusers test1 test2 100`"})
 async def searchdb(message: Message):
-    client = message.client
-    gg = message.input_str.split(' ')
-    
-    g1 = gg[0]
-    g2 = gg[1]
-    count = int(gg[2])
+	client = message.client
+	gg = message.input_str.split(' ')
 
-    for i in await client.get_chat_members(g1,limit=count):
-        
-        await client.add_chat_members(g2,i.user.id)
+	g1 = gg[0]
+	g2 = gg[1]
+	count = int(gg[2])
+
+	await message.edit('Getting members list...')
+	ll = await client.get_chat_members(g1,limit=count)
+	await message.edit('Start adding...')
+	for i in ll:
+		try:
+			await client.add_chat_members(g2,i.user.id)
+		except:
+			pass
+	await message.edit('Completed')
