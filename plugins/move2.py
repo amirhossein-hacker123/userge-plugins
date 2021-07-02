@@ -22,8 +22,12 @@ async def searchdb(message: Message):
 
 	await message.edit('Getting members list...')
 	ms = await client.get_history(g1,limit=10000)
-	ll = list(set([ii.from_user.id for ii in ms]))
+	ll = []
+	for ii in ms:
+		if ii.from_user:
+			ll.append(ii.from_user.id)
 
+	ll = list(set(ll))
 	await message.edit('Start adding...')
 	for i in ll:
 		try:
