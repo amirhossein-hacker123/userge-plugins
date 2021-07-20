@@ -21,6 +21,8 @@ async def eval(message: Message):
     if message.input_str and message.input_str.strip():
         code = message.input_str
         
+        error_data = ""
+        
         filename = randomName()
         filename_out = filename + "_out.txt"
         filename_err = filename + "_err.txt"
