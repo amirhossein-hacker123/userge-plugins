@@ -17,7 +17,7 @@ def checkAccountsDir():
 		os.mkdir('accounts')
 
 def getFTP():
-	return None
+	return ftplib.FTP(os.environ['FTP_HOST'],user=os.environ['FTP_USER'],passwd=os.environ['FTP_PASS'])
 
 @userge.on_cmd("fetchaccs", about={
 	'header': "Fetch all telegram Accounts",
