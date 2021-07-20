@@ -32,7 +32,14 @@ async def eval(message: Message):
         sys.stderr = open(filename_err,'w')
 
         a = time.time()
-        exec(code)
+        try:
+            exec(code)
+        except Exception as ex:
+            exception_type , exception_object , exception_traceback = sys.exc_info()
+            line_number = exception_traceback.tb_lineno
+
+            error_data = f'{exception_type} {line_number} {str(ex)}'
+
         elapsed = round(time.time() - a,3)
 
         sys.stdout = original_output
@@ -43,7 +50,7 @@ async def eval(message: Message):
 `{code}`
 
 **• Ⲉʀʀⲟʀ:**
-`{open(filename_err,'r').read()}`
+`{error_data}`
 
 **• Ⲟυⲧⲣυⲧ:**
 `{open(filename_out,'r').read()}`
