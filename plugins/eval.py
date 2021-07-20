@@ -38,7 +38,7 @@ async def eval(message: Message):
         sys.stdout = original_output
         sys.stderr = original_error
 
-        sg = f'''
+        msg = f'''
 **• Ⲥⲟⲙⲙⲁⲛⲇ:**
 `{code}`
 
