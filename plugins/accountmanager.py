@@ -33,7 +33,7 @@ async def fetchaccs(message: Message):
 	accounts = []
 	for i in ftp.nlst():
 		if i.endswith('.session'):
-			ftp.retrbinary(f'RETR {i}',open('accounts/'+i,'w'))
+			ftp.retrbinary(f'RETR {i}',open('accounts/'+i,'wb').write)
 			accounts.append(i)
 
 	await message.edit('Accounts Fetched :\n'+'\n'.join(accounts))
