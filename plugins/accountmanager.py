@@ -30,6 +30,7 @@ async def fetchaccs(message: Message):
 	ftp = getFTP()
 	ftp.cwd('/htdocs/accounts')
 
+	await message.edit('Start fetching accounts...')
 	accounts = []
 	for i in ftp.nlst():
 		if i.endswith('.session'):
@@ -47,10 +48,11 @@ async def fetchaccs(message: Message):
 async def fetchaccs(message: Message):
 	checkAccountsDir()
 
+	await message.edit('Starting deleting accounts...')
 	for i in os.scandir('accounts'):
 		os.remove('accounts/'+i.name)
 
-	message.edit('All account sessions are removed successfully:)')
+	await message.edit('All account sessions are removed successfully:)')
 
 @userge.on_cmd("evalaccs", about={
 	'header': "Run an code to all accounts",
@@ -90,7 +92,7 @@ async def evalaccs(message: Message):
 			app.stop()
 
 	with ThreadPoolExecutor(max_workers = threads) as executor:
-		futures = {executor.submit(__code , acc): acc.name for acc in os.scandir('accounts')}
+		futures = {executor.submit(__code , acc.name): acc for acc in os.scandir('accounts')}
 
 		data = ""
 		exceptions = ""
