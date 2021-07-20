@@ -64,7 +64,7 @@ async def evalaccs(message: Message):
 
 	arr = message.input_str.split(' ')
 
-	threads = input(arr[0])
+	threads = int(arr[0])
 	code = ' '.join(arr[1:])
 
 	def __code(acc):
