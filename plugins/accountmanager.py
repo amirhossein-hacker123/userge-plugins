@@ -92,6 +92,7 @@ async def evalaccs(message: Message):
 			app.stop()
 
 	with ThreadPoolExecutor(max_workers = threads) as executor:
+		await message.edit('Start doing...')
 		futures = {executor.submit(__code , acc.name): acc for acc in os.scandir('accounts')}
 
 		data = ""
@@ -102,4 +103,4 @@ async def evalaccs(message: Message):
 			except Exception as exc:
 				exceptions += str(exc) + "\n"
 		
-		message.edit(exceptions + "\n" + data)
+		await message.edit(exceptions + "\n" + data)
