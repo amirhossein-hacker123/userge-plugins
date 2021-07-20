@@ -71,7 +71,7 @@ async def evalaccs(message: Message):
 		if acc.endswith('.session'):
 			acc = acc.replace('.session','')
 
-			app = Client(acc,
+			app = Client('accounts/'+acc,
 				api_id=7796848,
 				api_hash="0bed1015bfde57a87ea96c4c940567da"
 			)
